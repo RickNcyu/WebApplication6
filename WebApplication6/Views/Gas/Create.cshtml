@@ -1,0 +1,31 @@
+﻿@model WebApplication6.Models.YD
+
+
+@using (Html.BeginForm("Create","Gas")) 
+{
+    <table>
+        <h3>新增留言</h3>
+        @**@
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Gas)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.Gas)
+                @Html.ValidationMessageFor(model => model.Gas)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Content)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.Content)
+                @Html.ValidationMessageFor(model => model.Content)
+            </td>
+        </tr>
+      
+    </table>
+    <input type="submit" value="新增留言"/>
+}
+

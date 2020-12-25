@@ -8,8 +8,8 @@ using System.Web;
 namespace WebApplication6.Models
 {
     public class YD
-    {
-        [DisplayName("紀錄順序")]
+    {   
+        [DisplayName("編號")]
         public int Id { get; set; }
 
         [DisplayName("站名")]
@@ -21,7 +21,7 @@ namespace WebApplication6.Models
         [Required(ErrorMessage = "請輸入內容")]
         public string Content { get; set; }
 
-        [DisplayName("付款紀錄")]
+        [DisplayName("付款")]
         [Required(ErrorMessage = "請輸入內容")]
         public string Pay { get; set; }
 

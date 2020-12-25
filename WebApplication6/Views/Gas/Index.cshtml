@@ -7,31 +7,58 @@
     @Html.Action("Create")
 </div>
 <h2>留言板</h2>
+@*
+    @Html.ViewBag.Message
+    @Html.DropDownList("GetN", (SelectList)ViewBag.Test)
+*@
+
+@using (Html.BeginForm("Index", "Gas",FormMethod.Get))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(model=>model.Search)
+            </td>
+            <td>
+                @Html.TextBoxFor(model=>model.Search)
+            </td>
+            <td>
+                <input type="submit" value="搜尋" />
+            </td>
+        </tr>
+    </table>
+    
+}
+
+
 <table border="1">
     @*如果資料庫中不是零比紀錄，則顯示資料，並列出新增、刪除與修改連結*@
+    @*<td>@Html.DropDownListFor(model => model.DataList[0].Id, (SelectList)ViewBag.Test)</td>*@
+
+
+
     <tr>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Id)</td>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Gas)</td>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Content)</td>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Pay)</td>
-        <td>s56156</td>
-        
     </tr>
+
     @if (!Model.DataList.Count.Equals(0))
-    { 
+    {
         foreach (var item in Model.DataList)
         {
 <tr>
-    <td> @item.Id</td>
-    <td> @item.Gas</td>
-    <td> @item.Content</td>
-    <td> @item.Pay</td>
+    <td> @item.Id </td>
+    <td> @item.Gas </td>
+    <td> @item.Content </td>
+    <td> @item.Pay </td>
     <td><button class="editbtn">edit</button></td>
+    <td>@Html.ActionLink("刪除紀錄", "Delete", new { Id = item.Id })</td>
 </tr>
-
-    
         }
     }
+
     @*如果資料庫中為零筆紀錄，則印出"資料庫內查無資料"*@
     else
     {
@@ -48,6 +75,7 @@
 </div>
 
 @*匯入驗證所需的javascript*@
-@section Scripts {
+@section Scripts
+{
     @Scripts.Render("~/bundles/jqueryval")
 }

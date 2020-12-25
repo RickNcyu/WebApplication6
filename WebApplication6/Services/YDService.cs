@@ -12,10 +12,19 @@ namespace WebApplication6.Services
     {
         private readonly static string cnstr = ConfigurationManager.ConnectionStrings["TEST"].ConnectionString;
         private readonly SqlConnection conn = new SqlConnection(cnstr);
-        public List<YD> GetDataList()
+        public List<YD> GetDataList(string Search)
         {
             List<YD> DataList = new List<YD>();
-            string SQL = @" SELECT * FROM GasList;";
+            string SQL = string.Empty;
+            if (!string.IsNullOrWhiteSpace(Search))
+            {
+                SQL = $@"SELECT * FROM GasList WHERE Gas LIKE '%{Search}%' ;";
+            }
+            else
+            {
+                SQL = @" SELECT * FROM GasList;";
+            }
+            
             try
             {
                 conn.Open();
@@ -57,6 +66,24 @@ namespace WebApplication6.Services
                 cmd.ExecuteNonQuery();
             }
             catch(Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void DeleteGas(int Id)
+        {
+            string SQL = $@"DELETE FROM GasList WHERE Id={Id};";
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
             {
                 throw new Exception(e.Message.ToString());
             }

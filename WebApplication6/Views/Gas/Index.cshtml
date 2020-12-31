@@ -2,25 +2,29 @@
 
 @{
     ViewBag.Title = "Index";
+    
 }
-<div id="CreateData">
-    @Html.Action("Create")
-</div>
-<h2>留言板</h2>
-@*
-    @Html.ViewBag.Message
-    @Html.DropDownList("GetN", (SelectList)ViewBag.Test)
-*@
+    <div id="CreateData">
+        @Html.Partial("Create",new ViewDataDictionary {})
+        @*@Html.Action("Create")*@ 
+    </div>
+<h2>款項列表</h2>
+  
+   
+
 
 @using (Html.BeginForm("Index", "Gas",FormMethod.Get))
 {
     <table>
         <tr>
             <td>
-                @Html.LabelFor(model=>model.Search)
+                @Html.LabelFor(model => model.Search)
+                
+                
             </td>
             <td>
-                @Html.TextBoxFor(model=>model.Search)
+                @Html.TextBoxFor(model => model.Search)
+               
             </td>
             <td>
                 <input type="submit" value="搜尋" />

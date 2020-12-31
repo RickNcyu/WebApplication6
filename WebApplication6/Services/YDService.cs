@@ -92,5 +92,32 @@ namespace WebApplication6.Services
                 conn.Close();
             }
         }
+        public List<GasN> SearchGas()
+        {
+            List<GasN> DataList = new List<GasN>();
+            string SQL= $@"SELECT * FROM GasName;";
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    GasN Data = new GasN();
+                    Data.Gid = Convert.ToInt32(dr["Gid"]);
+                    Data.Name = dr["Name"].ToString();
+                    DataList.Add(Data);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return DataList;
+        }
     }
 }

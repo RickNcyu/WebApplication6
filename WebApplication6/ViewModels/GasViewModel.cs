@@ -12,6 +12,8 @@ namespace WebApplication6.ViewModels
         public List<YD> DataList { get; set; }
         [DisplayName("搜尋:")]
         public string Search { get; set; }
-        
+        [DisplayName("電子發票號碼")]
+        public int Num { get; set; }
+
     }
 }

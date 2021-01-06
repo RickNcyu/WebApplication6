@@ -55,7 +55,10 @@ namespace WebApplication6.Controllers
         {
             GasSer.GasInsert(Data.Num,Data.Date);
 
-            //System.Diagnostics.Debug.WriteLine(Data.Date);
+            /*System.Diagnostics.Debug.WriteLine(Data.Num[1]);
+            string temp=Data.Num.Substring(2);
+
+            System.Diagnostics.Debug.WriteLine(temp);*/
 
             var categories = GasSer.SearchGas();
             SelectList selectList = new SelectList(categories, "Id", "Gas");

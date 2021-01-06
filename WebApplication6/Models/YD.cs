@@ -13,7 +13,7 @@ namespace WebApplication6.Models
         public int Id { get; set; }
 
         [DisplayName("電子發票號碼")]
-        public int Number { get; set; }
+        public string Number { get; set; }
 
         [DisplayName("站名")]
         [Required(ErrorMessage = "請輸入內容")]

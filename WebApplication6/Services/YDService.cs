@@ -34,7 +34,7 @@ namespace WebApplication6.Services
                 {
                     YD Data = new YD();
                     Data.Id = Convert.ToInt32(dr["Id"]);
-                    Data.Number = Convert.ToInt32(dr["Number"]);
+                    Data.Number = dr["Number"].ToString();
                     Data.Gas = dr["Gas"].ToString();
                     Data.Content = dr["Content"].ToString();
                     Data.Pay = dr["Pay"].ToString();
@@ -58,18 +58,27 @@ namespace WebApplication6.Services
             return DataList;
         }
         //create 輸入Num(發票號碼)展開50筆
-        public void GasInsert(int Num,string Date)
+        public void GasInsert(string Num,string Date)
         {
 
             
             try
             {
+
+                
+                string Head=Num.Substring(0,2),temp = Num.Substring(2),Ans="";
+                int count = Convert.ToInt32(temp);
                 conn.Open();
                 for (int i = 0; i <= 50; i++)
                 {   
-                    string SQL = $@"INSERT INTO GasList(Number,Date) VALUES ('{Num+i}','{Date}') ; ";
+
+                    //temp = Head + count.ToString();
+                    Ans = Head+count.ToString();
+                    
+                    string SQL = $@"INSERT INTO GasList(Number,Date) VALUES ('{Ans}','{Date}') ; ";
                     SqlCommand cmd = new SqlCommand(SQL, conn);
                     cmd.ExecuteNonQuery();
+                    count++;
                 }
             }
             catch(Exception e)

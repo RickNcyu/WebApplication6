@@ -43,11 +43,14 @@
 
 
     <tr>
-        <td>@Html.DisplayNameFor(model => model.DataList[0].Id)</td>
+        @*<td>@Html.DisplayNameFor(model => model.DataList[0].Id)</td>*@
         <td>@Html.DisplayNameFor(model => model.DataList[0].Number)</td>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Gas)</td>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Content)</td>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Pay)</td>
+        <td>@Html.DisplayNameFor(model => model.DataList[0].Date)</td>
+        <td></td>
+        <td></td>
     </tr>
      
     @if (!Model.DataList.Count.Equals(0))
@@ -55,11 +58,12 @@
         foreach (var item in Model.DataList)
         {
 <tr>
-    <td> @item.Id </td>
+    @*<td> @item.Id </td>*@
     <td> @item.Number </td>
     <td> @item.Gas </td>
     <td> @item.Content </td>
     <td> @item.Pay </td>
+    <td> @item.Date </td>
     <td><button class="editbtn">edit</button></td>
     <td>@Html.ActionLink("刪除紀錄", "Delete", new { Id = item.Id })</td>
 </tr>

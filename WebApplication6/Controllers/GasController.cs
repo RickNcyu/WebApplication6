@@ -53,9 +53,9 @@ namespace WebApplication6.Controllers
         [HttpPost]
         public ActionResult Create(GasViewModel Data)
         {
-            GasSer.GasInsert(Data.Num);
+            GasSer.GasInsert(Data.Num,Data.Date);
 
-            //System.Diagnostics.Debug.WriteLine(Data.Num);
+            //System.Diagnostics.Debug.WriteLine(Data.Date);
 
             var categories = GasSer.SearchGas();
             SelectList selectList = new SelectList(categories, "Id", "Gas");

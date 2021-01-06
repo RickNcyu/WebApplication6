@@ -18,7 +18,7 @@ namespace WebApplication6.Services
             string SQL = string.Empty;
             if (!string.IsNullOrWhiteSpace(Search))
             {
-                SQL = $@"SELECT * FROM GasList WHERE Gas LIKE '%{Search}%' ;";
+                SQL = $@"SELECT * FROM GasList WHERE Gas LIKE '%{Search}%' OR Date LIKE '%{Search}%';";
             }
             else
             {
@@ -38,6 +38,7 @@ namespace WebApplication6.Services
                     Data.Gas = dr["Gas"].ToString();
                     Data.Content = dr["Content"].ToString();
                     Data.Pay = dr["Pay"].ToString();
+                    Data.Date = dr["Date"].ToString();
                     //System.Diagnostics.Debug.WriteLine(Data.Gas);
 
                     DataList.Add(Data);
@@ -57,7 +58,7 @@ namespace WebApplication6.Services
             return DataList;
         }
         //create 輸入Num(發票號碼)展開50筆
-        public void GasInsert(int Num)
+        public void GasInsert(int Num,string Date)
         {
 
             
@@ -66,7 +67,7 @@ namespace WebApplication6.Services
                 conn.Open();
                 for (int i = 0; i <= 50; i++)
                 {   
-                    string SQL = $@"INSERT INTO GasList(Number) VALUES ('{Num+i}') ; ";
+                    string SQL = $@"INSERT INTO GasList(Number,Date) VALUES ('{Num+i}','{Date}') ; ";
                     SqlCommand cmd = new SqlCommand(SQL, conn);
                     cmd.ExecuteNonQuery();
                 }

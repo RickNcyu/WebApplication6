@@ -64,7 +64,7 @@
     <td> @item.Content </td>
     <td> @item.Pay </td>
     <td> @item.Date </td>
-    <td>@Html.ActionLink("編輯紀錄", "Edit", new { Id = item.Id, Number = item.Number, Date = item.Date })</td>
+    <td>@Html.ActionLink("編輯紀錄", "Edit", new {Number = item.Number, Date = item.Date })</td>
     <td>@Html.ActionLink("刪除紀錄", "Delete", new { Id = item.Id })</td>
 
 </tr>

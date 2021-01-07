@@ -136,23 +136,52 @@ namespace WebApplication6.Services
             }
             return DataList;
         }
-        public YD GetDataId(int Id)
+        //取得單一筆資料
+        public YD GetDataId(string number)
         {
             YD Data = new YD();
-            /*string SQL = $@"SELECT * FROM GasList WHERE Number={Id}; ";
+            string SQL = $@"SELECT * FROM GasList WHERE Number={number}; ";
             try
             {
-
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                Data.Id = Convert.ToInt32(dr["Id"]);
+                Data.Number = dr["Number"].ToString();
+                Data.Gas = dr["Gas"].ToString();
+                Data.Content = dr["Content"].ToString();
+                Data.Pay = dr["Pay"].ToString();
+                Data.Date = dr["Date"].ToString();
             }
-            catch
+            catch(Exception e)
             {
-
+                Data = null;
             }
             finally
             {
-
-            }*/
+                conn.Close();
+            }
             return Data;
+        }
+        //直接修改資料庫裡的資料所以為void 不需要再回傳list來顯示到頁面之類的
+        public void UpdateData(YD updatedata)
+        {
+            string SQL = $@"UPDATE GasList SET Gas = '{updatedata.Gas}',Content='{updatedata.Content}',Pay='{updatedata.Pay}' WHERE Number='{updatedata.Number}'; ";
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL,conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
         
     }

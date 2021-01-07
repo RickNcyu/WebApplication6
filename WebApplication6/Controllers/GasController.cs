@@ -66,7 +66,7 @@ namespace WebApplication6.Controllers
             return RedirectToAction("Index");
         }
         //多載處理GET 另一種為HTTPPOST
-        public ActionResult Edit(int Id,string Number,string Date)
+        public ActionResult Edit(string Number,string Date)
         {
             ViewBag.Number = Number;
             ViewBag.Date = Date;
@@ -89,9 +89,13 @@ namespace WebApplication6.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Edit()
+        public ActionResult Edit(string Number,YD updatedata)
         {
-            System.Diagnostics.Debug.WriteLine("a");
+            // updatedata.Id=
+            /*System.Diagnostics.Debug.WriteLine(Number);
+            System.Diagnostics.Debug.WriteLine(updatedata.Number);*/
+            updatedata.Number = Number;
+            GasSer.UpdateData(updatedata);
             return RedirectToAction("Index");
         }
     }

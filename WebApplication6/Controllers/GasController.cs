@@ -16,21 +16,15 @@ namespace WebApplication6.Controllers
         // GET: Gas
         public ActionResult Index(string Search)
         {
-
-            
-
-
             GasViewModel DATA = new GasViewModel();
             DATA.Search = Search;
 
-            var categories = GasSer.SearchGas();
+            //var categories = GasSer.SearchGas();
             //前面的Name為資料表中選單顯示的欄位 :Name=>中華 顯示的欄位
             //後面的Name為傳入的值 Name=>中華 傳入的欄位
-            SelectList selectList = new SelectList(categories,"Name","Name");
+            //SelectList selectList = new SelectList(categories,"Name","Name");
             
-            ViewBag.Test = selectList;
-            
-            System.Diagnostics.Debug.WriteLine(Search);
+            //ViewBag.Test = selectList;
             DATA.DataList = GasSer.GetDataList(DATA.Search);
 
             /*foreach (var item in DATA.DataList)
@@ -60,9 +54,7 @@ namespace WebApplication6.Controllers
 
             System.Diagnostics.Debug.WriteLine(temp);*/
 
-            var categories = GasSer.SearchGas();
-            SelectList selectList = new SelectList(categories, "Id", "Gas");
-            ViewBag.Test = selectList;
+            
             //ViewBag.Message = "gg";
             return RedirectToAction("Index");
             
@@ -70,6 +62,36 @@ namespace WebApplication6.Controllers
         public ActionResult Delete(int Id)
         {
             GasSer.DeleteGas(Id);
+           
+            return RedirectToAction("Index");
+        }
+        //多載處理GET 另一種為HTTPPOST
+        public ActionResult Edit(int Id,string Number,string Date)
+        {
+            ViewBag.Number = Number;
+            ViewBag.Date = Date;
+            var categories = GasSer.SearchGas();
+            SelectList selectList = new SelectList(categories, "Name", "Name");
+            ViewBag.Gas = selectList;
+
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem {Text="已付款"});
+            list.Add(new SelectListItem { Text ="未付款"});
+
+
+            ViewBag.List = list;
+
+            //System.Diagnostics.Debug.WriteLine(Ifpay);
+
+
+            //return RedirectToAction("Index");
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Edit()
+        {
+            System.Diagnostics.Debug.WriteLine("a");
             return RedirectToAction("Index");
         }
     }

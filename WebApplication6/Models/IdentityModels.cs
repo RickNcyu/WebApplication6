@@ -29,5 +29,7 @@ namespace WebApplication6.Models
         {
             return new ApplicationDbContext();
         }
+
+       
     }
 }

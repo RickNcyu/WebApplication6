@@ -242,6 +242,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Gas\Index.cshtml" />
     <Content Include="Views\Gas\Create.cshtml" />
+    <Content Include="Views\Gas\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

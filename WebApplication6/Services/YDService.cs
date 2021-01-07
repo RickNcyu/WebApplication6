@@ -136,5 +136,24 @@ namespace WebApplication6.Services
             }
             return DataList;
         }
+        public YD GetDataId(int Id)
+        {
+            YD Data = new YD();
+            /*string SQL = $@"SELECT * FROM GasList WHERE Number={Id}; ";
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }*/
+            return Data;
+        }
+        
     }
 }

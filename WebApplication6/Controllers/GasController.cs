@@ -82,6 +82,8 @@ namespace WebApplication6.Controllers
             
             ViewBag.Gas = selectList;
             
+            //?????????好像如果把model.pay的值(假設為已付款)傳進來後 HTML中的SELECETLISTITEM若抓取到符合對應的值會自動變為預設
+            //!!!!!!!!!!! 懂了 假設NEW SELECETELISTITEM新增的TEXT 與 傳進來的string Pay 相符(相等)則SELECETLISTITEM會自動將預設變更為Pay
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem {Text="已付款"});
             list.Add(new SelectListItem { Text ="未付款"});

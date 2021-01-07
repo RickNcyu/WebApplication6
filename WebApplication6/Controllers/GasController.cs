@@ -66,20 +66,33 @@ namespace WebApplication6.Controllers
             return RedirectToAction("Index");
         }
         //多載處理GET 另一種為HTTPPOST
-        public ActionResult Edit(string Number,string Date)
+        public ActionResult Edit(string Number,string Gas,string Content,string Pay,string Date)
         {
+           
             ViewBag.Number = Number;
             ViewBag.Date = Date;
+            ViewBag.Content = Content;
             var categories = GasSer.SearchGas();
             SelectList selectList = new SelectList(categories, "Name", "Name");
+            //如果已經有站名修改時有預設值
+            if (!string.IsNullOrEmpty(Gas)) {
+             selectList.Where(q => q.Value == Gas).First().Selected = true;
+            }
+            
+            
             ViewBag.Gas = selectList;
-
+            
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem {Text="已付款"});
             list.Add(new SelectListItem { Text ="未付款"});
 
-
+            //System.Diagnostics.Debug.WriteLine(Pay);
+            
+            
+            
             ViewBag.List = list;
+
+            
 
             //System.Diagnostics.Debug.WriteLine(Ifpay);
 
@@ -89,12 +102,12 @@ namespace WebApplication6.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Edit(string Number,YD updatedata)
+        public ActionResult Edit(YD updatedata)
         {
             // updatedata.Id=
             /*System.Diagnostics.Debug.WriteLine(Number);
             System.Diagnostics.Debug.WriteLine(updatedata.Number);*/
-            updatedata.Number = Number;
+           
             GasSer.UpdateData(updatedata);
             return RedirectToAction("Index");
         }

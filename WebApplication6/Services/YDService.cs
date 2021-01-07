@@ -67,7 +67,7 @@ namespace WebApplication6.Services
 
                 
                 string Head=Num.Substring(0,2),temp = Num.Substring(2),Ans="";
-                int count = Convert.ToInt32(temp);
+                long count = Convert.ToInt64(temp);
                 conn.Open();
                 for (int i = 0; i <= 50; i++)
                 {   

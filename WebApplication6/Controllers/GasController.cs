@@ -66,12 +66,13 @@ namespace WebApplication6.Controllers
             return RedirectToAction("Index");
         }
         //多載處理GET 另一種為HTTPPOST
-        public ActionResult Edit(string Number,string Gas,string Content,string Pay,string Date)
+        public ActionResult Edit(string Number,string Gas,string Content,string Pay,int Cost,string Date)
         {
            
             ViewBag.Number = Number;
             ViewBag.Date = Date;
             ViewBag.Content = Content;
+            ViewBag.Cost = Cost;
             var categories = GasSer.SearchGas();
             SelectList selectList = new SelectList(categories, "Name", "Name");
             //如果已經有站名修改時有預設值

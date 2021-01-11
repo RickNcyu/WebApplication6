@@ -38,6 +38,7 @@ namespace WebApplication6.Services
                     Data.Gas = dr["Gas"].ToString();
                     Data.Content = dr["Content"].ToString();
                     Data.Pay = dr["Pay"].ToString();
+                    Data.Cost = Convert.ToInt32(dr["Cost"]);
                     Data.Date = dr["Date"].ToString();
                     //System.Diagnostics.Debug.WriteLine(Data.Gas);
 
@@ -152,6 +153,7 @@ namespace WebApplication6.Services
                 Data.Gas = dr["Gas"].ToString();
                 Data.Content = dr["Content"].ToString();
                 Data.Pay = dr["Pay"].ToString();
+                Data.Cost = Convert.ToInt32(dr["Cost"]);
                 Data.Date = dr["Date"].ToString();
             }
             catch(Exception e)
@@ -167,7 +169,7 @@ namespace WebApplication6.Services
         //直接修改資料庫裡的資料所以為void 不需要再回傳list來顯示到頁面之類的
         public void UpdateData(YD updatedata)
         {
-            string SQL = $@"UPDATE GasList SET Gas = '{updatedata.Gas}',Content='{updatedata.Content}',Pay='{updatedata.Pay}' WHERE Number='{updatedata.Number}'; ";
+            string SQL = $@"UPDATE GasList SET Gas = '{updatedata.Gas}',Content='{updatedata.Content}',Pay='{updatedata.Pay}',Cost='{updatedata.Cost}' WHERE Number='{updatedata.Number}'; ";
             try
             {
                 conn.Open();

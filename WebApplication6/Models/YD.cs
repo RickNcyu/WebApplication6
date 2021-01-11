@@ -27,6 +27,10 @@ namespace WebApplication6.Models
         [Required(ErrorMessage = "請輸入內容")]
         public String Pay { get; set; }
 
+        [DisplayName("金額")]
+        [Required(ErrorMessage = "請輸入內容")]
+        public int Cost { get; set; }
+
         [DisplayName("月份")]
         [Required(ErrorMessage = "請輸入內容")]
         public string Date { get; set; }

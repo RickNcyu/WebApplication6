@@ -47,6 +47,7 @@
         <td>@Html.DisplayNameFor(model => model.DataList[0].Gas)</td>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Content)</td>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Pay)</td>
+        <td>@Html.DisplayNameFor(model => model.DataList[0].Cost)</td>
         <td>@Html.DisplayNameFor(model => model.DataList[0].Date)</td>
         <td></td>
     </tr>
@@ -61,9 +62,10 @@
     <td> @item.Gas </td>
     <td> @item.Content </td>
     <td> @item.Pay </td>
+    <td> @item.Cost </td>
     <td> @item.Date </td>
-    <td>@Html.ActionLink("編輯紀錄", "Edit", new {@class = "form-control" ,Number = item.Number, Gas = item.Gas, Content = item.Content,Pay=item.Pay,Date = item.Date })</td>
-    
+    <td>@Html.ActionLink("編輯紀錄", "Edit", new { @class = "form-control", Number = item.Number, Gas = item.Gas, Content = item.Content, Pay = item.Pay, Cost = item.Cost, Date = item.Date })</td>
+
     @*<td>@Html.ActionLink("刪除紀錄", "Delete", new { Id = item.Id })</td>*@
 
 </tr>
@@ -74,7 +76,7 @@
     else
     {
         <tr>
-            <td colspan="5">
+            <td colspan="6">
                 資料庫內查無資料
             </td>
         </tr>

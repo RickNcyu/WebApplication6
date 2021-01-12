@@ -33,9 +33,9 @@ namespace WebApplication6.Controllers
             }*/
 
             //倒序
-            var List = from s in DATA.DataList select s ;
+            /*var List = from s in DATA.DataList select s ;
             List = List.OrderByDescending(s=>s.Number);
-            DATA.DataList = List.ToList();
+            DATA.DataList = List.ToList();*/
             return View(DATA);
         }
         public ActionResult Create()

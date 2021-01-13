@@ -185,6 +185,24 @@ namespace WebApplication6.Services
                 conn.Close();
             }
         }
-        
+        public void InsertName(GasN newData)
+        {
+            string SQL = $@"INSERT INTO GasName(Name) VALUES ('{newData.Name}') ; ";
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
     }
 }

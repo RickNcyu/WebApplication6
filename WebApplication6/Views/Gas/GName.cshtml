@@ -1,0 +1,62 @@
+﻿@model WebApplication6.Models.GasN
+
+@{
+    ViewBag.Title = "站名";
+}
+@*@ViewBag.Data[1].Name*@
+<h2>GName</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>新增站名</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="新增站名" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<table border="1" style="font-size:20px">
+
+    @if (!ViewBag.Data.Count.Equals(0))
+    {
+        foreach (var item in ViewBag.Data)
+        {
+            <tr>
+                <td> @item.Gid</td>
+                <td> @item.Name</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="1">
+                資料庫內查無資料
+            </td>
+
+
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("返回列表", "Index")
+</div>
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

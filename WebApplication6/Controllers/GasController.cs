@@ -114,5 +114,21 @@ namespace WebApplication6.Controllers
             GasSer.UpdateData(updatedata);
             return RedirectToAction("Index");
         }
+        public ActionResult GName()
+        {
+            var List = GasSer.SearchGas();
+            //System.Diagnostics.Debug.WriteLine(List[0].Name);
+            ViewBag.Data = List;
+            
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GName(GasN Data)
+        {
+
+            GasSer.InsertName(Data);
+            
+            return RedirectToAction("GName");
+        }
     }
 }

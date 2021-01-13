@@ -4,12 +4,14 @@
     ViewBag.Title = "YD";
 
 }
+<td border="1" style="font-size:20px">@Html.ActionLink("新增站名", "GName")</td>
 @*@DateTime.Now*@
     <div id="CreateData">
         
         @Html.Action("Create")
        
     </div>
+
 <h2>款項列表</h2>
   
 
@@ -65,7 +67,6 @@
     <td> @item.Cost </td>
     <td> @item.Date </td>
     <td>@Html.ActionLink("編輯紀錄", "Edit", new { @class = "form-control", Number = item.Number, Gas = item.Gas, Content = item.Content, Pay = item.Pay, Cost = item.Cost, Date = item.Date })</td>
-
     @*<td>@Html.ActionLink("刪除紀錄", "Delete", new { Id = item.Id })</td>*@
 
 </tr>

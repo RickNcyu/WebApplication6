@@ -244,6 +244,7 @@
     <Content Include="Views\Gas\Index.cshtml" />
     <Content Include="Views\Gas\Create.cshtml" />
     <Content Include="Views\Gas\Edit.cshtml" />
+    <Content Include="Views\Gas\GName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

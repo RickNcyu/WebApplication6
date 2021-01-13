@@ -11,8 +11,9 @@ namespace WebApplication6.Models
     {
         [DisplayName("編號")]
         public int Gid { get; set; }
-
-        [DisplayName("站名")]
+        
+        [DisplayName("站名(請勿重複)")]
+        [Required(ErrorMessage = "請輸入內容")]
         public string Name { get; set; }
     }
 }

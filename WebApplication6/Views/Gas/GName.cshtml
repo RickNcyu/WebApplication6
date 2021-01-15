@@ -35,10 +35,11 @@
     {
         foreach (var item in ViewBag.Data)
         {
-            <tr>
-                <td> @item.Gid</td>
-                <td> @item.Name</td>
-            </tr>
+    <tr>
+        <td> @item.Gid</td>
+        <td> @item.Name</td>
+        <td>@Html.ActionLink("刪除紀錄", "GNameDelete", new { Name = item.Name })</td>
+    </tr>
         }
     }
     else

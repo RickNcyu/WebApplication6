@@ -188,13 +188,44 @@ namespace WebApplication6.Services
         public void InsertName(GasN newData)
         {
             string SQL = $@"INSERT INTO GasName(Name) VALUES ('{newData.Name}') ; ";
+            string reset = $@"alter table GasName drop column Gid;";
+            string change = $@"alter table GasName add Gid int identity (1,1);";
             try
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 cmd.ExecuteNonQuery();
+                SqlCommand cmd2 = new SqlCommand(reset, conn);
+                cmd2.ExecuteNonQuery();
+                SqlCommand cmd3 = new SqlCommand(change, conn);
+                cmd3.ExecuteNonQuery();
             }
             catch(Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void DeleteGName(string Name)
+        {         System.Diagnostics.Debug.WriteLine(Name);
+            string SQL = $@"DELETE FROM GasName WHERE Name= '{Name}';";
+            
+            string reset = $@"alter table GasName drop column Gid;";
+            string change = $@"alter table GasName add Gid int identity (1,1);";
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                cmd.ExecuteNonQuery();
+                SqlCommand cmd2 = new SqlCommand(reset, conn);               
+                cmd2.ExecuteNonQuery();
+                SqlCommand cmd3 = new SqlCommand(change, conn);
+                cmd3.ExecuteNonQuery();
+            }
+            catch (Exception e)
             {
                 throw new Exception(e.Message.ToString());
             }

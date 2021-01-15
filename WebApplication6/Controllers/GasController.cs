@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows;
 using WebApplication6.Models;
 using WebApplication6.Services;
 using WebApplication6.ViewModels;
@@ -125,9 +126,22 @@ namespace WebApplication6.Controllers
         [HttpPost]
         public ActionResult GName(GasN Data)
         {
+           
+            if (string.IsNullOrWhiteSpace(Data.Name))
+            {
+                MessageBox.Show("請輸入正確站名");
+                return RedirectToAction("GName");
 
+            }
             GasSer.InsertName(Data);
             
+            return RedirectToAction("GName");
+        }
+        public ActionResult GNameDelete(string Name)
+        {
+            
+            GasSer.DeleteGName(Name);
+
             return RedirectToAction("GName");
         }
     }

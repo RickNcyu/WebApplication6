@@ -5,7 +5,7 @@
 }
 @*@ViewBag.Data[1].Name*@
 <h2>GName</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

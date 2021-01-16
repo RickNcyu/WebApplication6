@@ -25,6 +25,10 @@ namespace WebApplication6
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+
+            //ISS在發布後需要將優化設定成false 否則無法使用jquery
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

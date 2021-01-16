@@ -186,7 +186,7 @@ namespace WebApplication6.Services
             }
         }
         public void InsertName(GasN newData)
-        {
+        {   
             string SQL = $@"INSERT INTO GasName(Name) VALUES ('{newData.Name}') ; ";
             string reset = $@"alter table GasName drop column Gid;";
             string change = $@"alter table GasName add Gid int identity (1,1);";

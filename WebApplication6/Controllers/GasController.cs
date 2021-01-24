@@ -15,10 +15,12 @@ namespace WebApplication6.Controllers
     {
         private readonly YDService GasSer = new YDService();
         // GET: Gas
-        public ActionResult Index(string Search)
+        public ActionResult Index(string Search,string Searchradio)
         {
             GasViewModel DATA = new GasViewModel();
+
             DATA.Search = Search;
+            DATA.Searchradio = Searchradio;
 
             //var categories = GasSer.SearchGas();
             //前面的Name為資料表中選單顯示的欄位 :Name=>中華 顯示的欄位
@@ -26,8 +28,8 @@ namespace WebApplication6.Controllers
             //SelectList selectList = new SelectList(categories,"Name","Name");
 
             //ViewBag.Test = selectList;
-            DATA.DataList = GasSer.GetDataList(DATA.Search);
-
+            DATA.DataList = GasSer.GetDataList(DATA.Search,DATA.Searchradio);
+            
             /*foreach (var item in DATA.DataList)
             {
                 System.Diagnostics.Debug.WriteLine(DATA.DataList[0].Gas);

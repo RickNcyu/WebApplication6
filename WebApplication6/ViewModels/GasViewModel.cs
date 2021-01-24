@@ -14,6 +14,8 @@ namespace WebApplication6.ViewModels
         
         [DisplayName("搜尋:")]
         public string Search { get; set; }
+        [DisplayName("未付款")]
+        public string Searchradio { get; set; }
         [DisplayName("電子發票號碼")]
         [Required(ErrorMessage = "請輸入內容")]
         public string Num { get; set; }

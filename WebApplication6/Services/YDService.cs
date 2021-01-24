@@ -12,13 +12,28 @@ namespace WebApplication6.Services
     {
         private readonly static string cnstr = ConfigurationManager.ConnectionStrings["TEST"].ConnectionString;
         private readonly SqlConnection conn = new SqlConnection(cnstr);
-        public List<YD> GetDataList(string Search)
+        public List<YD> GetDataList(string Search,string Searchradio)
         {
+            
             List<YD> DataList = new List<YD>();
             string SQL = string.Empty;
-            if (!string.IsNullOrWhiteSpace(Search))
+            //||!string.IsNullOrWhiteSpace(Searchradio) OR  Pay LIKE '%{Searchradio}%'
+            //有字有按鈕
+            if (!string.IsNullOrWhiteSpace(Search)  &&  !string.IsNullOrWhiteSpace(Searchradio) )
+            {
+                System.Diagnostics.Debug.WriteLine(Search);
+                System.Diagnostics.Debug.WriteLine(Searchradio);
+                SQL = $@"SELECT * FROM GasList WHERE Pay LIKE '%{Searchradio}%' and (Gas LIKE '%{Search}%' OR Date LIKE '%{Search}%');";
+            }
+            //有字沒按鈕
+            else if(!string.IsNullOrWhiteSpace(Search) && string.IsNullOrWhiteSpace(Searchradio))
             {
                 SQL = $@"SELECT * FROM GasList WHERE Gas LIKE '%{Search}%' OR Date LIKE '%{Search}%';";
+            }
+            //有按鈕沒字
+            else if(string.IsNullOrWhiteSpace(Search) && !string.IsNullOrWhiteSpace(Searchradio))
+            {
+                SQL = $@"SELECT * FROM GasList WHERE Pay LIKE '%{Searchradio}%';";
             }
             else
             {

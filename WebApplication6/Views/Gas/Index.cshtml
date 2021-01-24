@@ -4,36 +4,46 @@
     ViewBag.Title = "YD";
 
 }
-<td>@Html.ActionLink("新增站名","GName",new {style="font-size:20px;color:red" })</td>
+<td>@Html.ActionLink("新增站名", "GName", new { style = "font-size:20px;color:red" })</td>
 @*@DateTime.Now*@
-    <div id="CreateData">
-        
-        @Html.Action("Create")
-       
-    </div>
+<div id="CreateData">
+
+    @Html.Action("Create")
+
+</div>
 
 <h2>款項列表</h2>
-  
 
-@using (Html.BeginForm("Index", "Gas",FormMethod.Get))
+    
+
+
+    @*@Html.RadioButton("Gender", "Female")*@
+
+
+@using (Html.BeginForm("Index", "Gas", FormMethod.Get))
 {
     <table>
         <tr>
             <td>
+                @Html.RadioButtonFor(model => model.Searchradio,"", new { @checked = true})
                 @Html.LabelFor(model => model.Search)
-                
-                
             </td>
             <td>
                 @Html.TextBoxFor(model => model.Search)
-               
+
             </td>
             <td>
+                @Html.LabelFor(model => model.Searchradio)
+            </td>    
+            <td>
+                @Html.RadioButtonFor(model => model.Searchradio, "未付款")
+            </td>
+                <td>
                 <input type="submit" value="搜尋" />
             </td>
         </tr>
     </table>
-    
+
 }
 
 
@@ -53,23 +63,23 @@
         <td>@Html.DisplayNameFor(model => model.DataList[0].Date)</td>
         <td></td>
     </tr>
-     
+
     @if (!Model.DataList.Count.Equals(0))
     {
         foreach (var item in Model.DataList)
         {
-<tr>
-    @*<td> @item.Id </td>*@
-    <td> @item.Number </td>
-    <td> @item.Gas </td>
-    <td> @item.Content </td>
-    <td> @item.Pay </td>
-    <td> @item.Cost </td>
-    <td> @item.Date </td>
-    <td>@Html.ActionLink("編輯紀錄", "Edit", new { @class = "form-control", Number = item.Number, Gas = item.Gas, Content = item.Content, Pay = item.Pay, Cost = item.Cost, Date = item.Date })</td>
-    @*<td>@Html.ActionLink("刪除紀錄", "Delete", new { Id = item.Id })</td>*@
+            <tr>
+                @*<td> @item.Id </td>*@
+                <td> @item.Number </td>
+                <td> @item.Gas </td>
+                <td> @item.Content </td>
+                <td> @item.Pay </td>
+                <td> @item.Cost </td>
+                <td> @item.Date </td>
+                <td>@Html.ActionLink("編輯紀錄", "Edit", new { @class = "form-control", Number = item.Number, Gas = item.Gas, Content = item.Content, Pay = item.Pay, Cost = item.Cost, Date = item.Date })</td>
+                @*<td>@Html.ActionLink("刪除紀錄", "Delete", new { Id = item.Id })</td>*@
 
-</tr>
+            </tr>
         }
     }
 
@@ -86,7 +96,7 @@
 <div>
     @*Html.ActionLink("Back to List", "About","Home")*@
     @*@Html.ActionLink("Back to List", "index")*@
-    
+
 </div>
 
 @*匯入驗證所需的javascript*@

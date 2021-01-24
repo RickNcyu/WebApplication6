@@ -125,13 +125,19 @@ namespace WebApplication6.Controllers
             var List = GasSer.SearchGas();
             //System.Diagnostics.Debug.WriteLine(List[0].Name);
             ViewBag.Data = List;
-
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = "重複新增";
+                TempData.Remove("Message");
+            }
+            //ViewBag.message = "重複新增";
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult GName(GasN Data)
         {
+            
             if (!ModelState.IsValid)
             {
                 //System.Diagnostics.Debug.WriteLine("Yes");
@@ -144,7 +150,15 @@ namespace WebApplication6.Controllers
                 return RedirectToAction("GName");
 
             }*/
-
+            /*string check;
+            check = Data.Name;
+            System.Diagnostics.Debug.WriteLine("1"+check);*/
+            if (!GasSer.CheckName(Data.Name))
+            {
+                //System.Diagnostics.Debug.WriteLine("Wrong"); 
+                TempData["Message"] = "重複新增";
+                return RedirectToAction("GName"); 
+            }
             GasSer.InsertName(Data);
             
             return RedirectToAction("GName");
@@ -156,5 +170,6 @@ namespace WebApplication6.Controllers
 
             return RedirectToAction("GName");
         }
+       
     }
 }

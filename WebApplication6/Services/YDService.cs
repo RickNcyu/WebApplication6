@@ -113,7 +113,7 @@ namespace WebApplication6.Services
         public List<GasN> SearchGas()
         {
             List<GasN> DataList = new List<GasN>();
-            string SQL= $@"SELECT * FROM GasName;";
+            string SQL= $@"SELECT * FROM GasName order by Gid;";
             try
             {
                 conn.Open();
@@ -187,7 +187,7 @@ namespace WebApplication6.Services
         }
         public void InsertName(GasN newData)
         {   
-            string SQL = $@"INSERT INTO GasName(Name) VALUES ('{newData.Name}') ; ";
+            string SQL = $@"INSERT INTO GasName(Name) VALUES (N'{newData.Name}') ; ";
             string reset = $@"alter table GasName drop column Gid;";
             string change = $@"alter table GasName add Gid int identity (1,1);";
             try
@@ -195,10 +195,10 @@ namespace WebApplication6.Services
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 cmd.ExecuteNonQuery();
-                SqlCommand cmd2 = new SqlCommand(reset, conn);
+                /*SqlCommand cmd2 = new SqlCommand(reset, conn);
                 cmd2.ExecuteNonQuery();
                 SqlCommand cmd3 = new SqlCommand(change, conn);
-                cmd3.ExecuteNonQuery();
+                cmd3.ExecuteNonQuery();*/
             }
             catch(Exception e)
             {
@@ -210,20 +210,20 @@ namespace WebApplication6.Services
             }
         }
         public void DeleteGName(string Name)
-        {         System.Diagnostics.Debug.WriteLine(Name);
-            string SQL = $@"DELETE FROM GasName WHERE Name= '{Name}';";
+        {         
+            string SQL = $@"DELETE FROM GasName WHERE Name= N'{Name}';";
             
-            string reset = $@"alter table GasName drop column Gid;";
-            string change = $@"alter table GasName add Gid int identity (1,1);";
+            /*string reset = $@"alter table GasName drop column Gid;";
+            string change = $@"alter table GasName add Gid int identity (1,1);";*/
             try
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 cmd.ExecuteNonQuery();
-                SqlCommand cmd2 = new SqlCommand(reset, conn);               
+                /*SqlCommand cmd2 = new SqlCommand(reset, conn);               
                 cmd2.ExecuteNonQuery();
                 SqlCommand cmd3 = new SqlCommand(change, conn);
-                cmd3.ExecuteNonQuery();
+                cmd3.ExecuteNonQuery();*/
             }
             catch (Exception e)
             {
@@ -234,6 +234,29 @@ namespace WebApplication6.Services
                 conn.Close();
             }
         }
-
+        //檢查重複
+        public bool CheckName(string check)
+        {
+             string SQL = $@"SELECT count(*) FROM GasName where Name=N'{check}';";
+             try
+             {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL,conn);
+                int ans = (int)cmd.ExecuteScalar();
+                //System.Diagnostics.Debug.WriteLine(ans);
+                if (ans==0) return true;
+                else return false;
+            }
+             catch(Exception e)
+             {
+                 throw new Exception(e.Message.ToString());
+             }
+             finally
+             {
+                 conn.Close();
+             }
+             
+            //System.Diagnostics.Debug.WriteLine(check);
+        }
     }
 }

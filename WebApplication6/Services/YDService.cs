@@ -59,7 +59,7 @@ namespace WebApplication6.Services
 
                     DataList.Add(Data);
                 }
-
+                
                 
                     
             }
@@ -273,5 +273,6 @@ namespace WebApplication6.Services
              
             //System.Diagnostics.Debug.WriteLine(check);
         }
+        
     }
 }

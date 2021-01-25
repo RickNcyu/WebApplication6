@@ -22,6 +22,8 @@ namespace WebApplication6.Controllers
             DATA.Search = Search;
             DATA.Searchradio = Searchradio;
 
+            
+            
             //var categories = GasSer.SearchGas();
             //前面的Name為資料表中選單顯示的欄位 :Name=>中華 顯示的欄位
             //後面的Name為傳入的值 Name=>中華 傳入的欄位
@@ -29,7 +31,17 @@ namespace WebApplication6.Controllers
 
             //ViewBag.Test = selectList;
             DATA.DataList = GasSer.GetDataList(DATA.Search,DATA.Searchradio);
-            
+
+            //TotalCost
+            int Cost = 0;
+            foreach (var item in DATA.DataList)
+            {
+                //System.Diagnostics.Debug.WriteLine(item.Cost);
+                Cost = Cost + item.Cost;
+            }
+
+            ViewBag.Cost = Cost;
+            //System.Diagnostics.Debug.WriteLine(Cost);
             /*foreach (var item in DATA.DataList)
             {
                 System.Diagnostics.Debug.WriteLine(DATA.DataList[0].Gas);

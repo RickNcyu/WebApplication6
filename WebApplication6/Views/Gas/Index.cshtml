@@ -19,13 +19,12 @@
 
     @*@Html.RadioButton("Gender", "Female")*@
 
-
 @using (Html.BeginForm("Index", "Gas", FormMethod.Get))
 {
     <table>
         <tr>
             <td>
-                @Html.RadioButtonFor(model => model.Searchradio,"", new { @checked = true})
+                @Html.RadioButtonFor(model => model.Searchradio, "", new { @checked = true })
                 @Html.LabelFor(model => model.Search)
             </td>
             <td>
@@ -33,13 +32,14 @@
 
             </td>
             <td>
-                @Html.LabelFor(model => model.Searchradio)
-            </td>    
-            <td>
                 @Html.RadioButtonFor(model => model.Searchradio, "未付款")
+                @Html.LabelFor(model => model.Searchradio)
             </td>
-                <td>
+            <td>
                 <input type="submit" value="搜尋" />
+            </td>
+            <td>
+                <h4 style="color:red"> 總金額 @ViewBag.Cost</h4>
             </td>
         </tr>
     </table>

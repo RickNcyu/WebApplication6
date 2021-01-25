@@ -9,7 +9,7 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <table>
-                    <h3>新增款項</h3>
+                    <h3>新增發票</h3>
                     <div class="form-group">
 
                         @Html.LabelFor(model => model.Date)
@@ -24,7 +24,7 @@
                         @Html.ValidationMessageFor(model => model.Num)
                     </div>
                 </table>
-                <input type="submit" value="新增款項" />
+                <input type="submit" value="新增發票" />
             }
         </section>
     </div>

@@ -185,5 +185,11 @@ namespace WebApplication6.Controllers
             return RedirectToAction("GName");
         }
        
+
+        //高雄
+        public ActionResult Kao()
+        {
+            return RedirectToAction("Index");
+        }
     }
 }

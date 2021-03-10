@@ -184,7 +184,7 @@ namespace WebApplication6.Services
         //直接修改資料庫裡的資料所以為void 不需要再回傳list來顯示到頁面之類的
         public void UpdateData(YD updatedata)
         {
-            string SQL = $@"UPDATE GasList SET Gas = '{updatedata.Gas}',Content='{updatedata.Content}',Pay='{updatedata.Pay}',Cost='{updatedata.Cost}' WHERE Number='{updatedata.Number}'; ";
+            string SQL = $@"UPDATE GasList SET Gas = N'{updatedata.Gas}',Content= N'{updatedata.Content}',Pay= '{updatedata.Pay}',Cost= '{updatedata.Cost}' WHERE Number= '{updatedata.Number}'; ";
             try
             {
                 conn.Open();

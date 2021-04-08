@@ -37,7 +37,25 @@ namespace WebApplication6.Services
             }
             else
             {
-                SQL = @" SELECT * FROM GasList;";
+                DateTime date = DateTime.Today;
+                var TaiwanCalendar = new System.Globalization.TaiwanCalendar();
+                var Year = TaiwanCalendar.GetYear(date);
+                var Month = TaiwanCalendar.GetMonth(date);
+                if (Month % 2 == 1)
+                {
+                    if (Month == 1)
+                    {
+                        Year--;
+                        Month = 12;
+                    }
+                    else
+                    {
+                        Month--;
+                    }
+                    
+                }
+                string datetime = Year.ToString() + Month.ToString("00");
+                SQL = $@" SELECT * FROM GasList WHERE Date = '{datetime}';";
             }
             
             try

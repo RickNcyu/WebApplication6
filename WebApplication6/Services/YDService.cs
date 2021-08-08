@@ -43,7 +43,7 @@ namespace WebApplication6.Services
                 var Month = TaiwanCalendar.GetMonth(date);
                 if (Month % 2 == 1)
                 {
-                    if (Month == 1)
+                    /*if (Month == 1)
                     {
                         Year--;
                         Month = 12;
@@ -51,7 +51,8 @@ namespace WebApplication6.Services
                     else
                     {
                         Month--;
-                    }
+                    }*/
+                    Month++;
                     
                 }
                 string datetime = Year.ToString() + Month.ToString("00");

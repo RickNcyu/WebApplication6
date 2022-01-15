@@ -1,0 +1,34 @@
+﻿@model WebApplication6.ViewModels.GasViewModel
+
+@*@ViewBag.s*@
+<div class="row">
+    <div class="col-md-8">
+        <section id="Create">
+            @using (Html.BeginForm("KaoCreate", "Gas", FormMethod.Post))
+            {
+@Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <table>
+                                    <h3>新增發票</h3>
+                                    <div class="form-group">
+
+                                        @Html.LabelFor(model => model.Date)
+                                        @Html.TextBoxFor(model => model.Date)
+                                        @Html.ValidationMessageFor(model => model.Date)
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        @Html.LabelFor(model => model.Num)
+                                        @Html.TextBoxFor(model => model.Num)
+                                        @Html.ValidationMessageFor(model => model.Num)
+                                    </div>
+                                </table>
+                                                <input type="submit" value="新增發票" />            }
+        </section>
+    </div>
+</div>
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

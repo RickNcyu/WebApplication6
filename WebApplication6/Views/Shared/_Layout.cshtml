@@ -12,22 +12,38 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("台南電子發票", "Index", "Gas", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
+            @*<div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        @Html.ActionLink("台南電子發票", "Index", "Gas", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+            *@
             <div class="navbar-collapse collapse">
+                <div class="navbar-header">
+                    @Html.ActionLink("台南電子發票", "Index", "Gas", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Gas")</li>
-                    <li>@Html.ActionLink("新增站名", "GName", "Gas")</li>
+
+                    <li>@Html.ActionLink("新增台南站名", "GName", "Gas")</li>
+                    @* <li>@Html.ActionLink("新增款項", "Create", "Gas")</li>*@
+                </ul>
+                <div class="navbar-header">
+                    
+                    @Html.ActionLink("高雄電子發票", "KaoIndex", "Gas", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <ul class="nav navbar-nav">
+
+                    <li>@Html.ActionLink("新增高雄站名", "KaoGName", "Gas")</li>
                     @* <li>@Html.ActionLink("新增款項", "Create", "Gas")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
+
+           
+
         </div>
     </div>
     <div class="container body-content">

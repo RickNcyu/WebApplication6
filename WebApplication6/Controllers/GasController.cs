@@ -403,7 +403,7 @@ namespace WebApplication6.Controllers
 
             GasSer.KaoDeleteGName(Name);
 
-            return RedirectToAction("GName");
+            return RedirectToAction("KaoGName");
         }
     }
 }

@@ -1,0 +1,98 @@
+﻿@model WebApplication6.ViewModels.GasViewModel
+
+@{ ViewBag.Title = "YD"; }
+<td>@Html.ActionLink("新增站名", "GName", new { style = "font-size:20px;color:red" })</td>
+@*@DateTime.Now*@
+<div id="CreateData">
+
+    @Html.Action("KaoCreate")
+
+</div>
+
+
+<h2>款項列表</h2>
+
+
+
+
+@*@Html.RadioButton("Gender", "Female")*@
+
+@using (Html.BeginForm("KaoIndex", "Gas", FormMethod.Get))
+{
+<table>
+    <tr>
+        <td>
+            @Html.RadioButtonFor(model => model.Searchradio, "", new { @checked = true })
+            @Html.LabelFor(model => model.Search)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Search)
+
+        </td>
+        <td>
+            @Html.RadioButtonFor(model => model.Searchradio, "未付款")
+            @Html.LabelFor(model => model.Searchradio)
+        </td>
+        <td>
+            <input type="submit" value="搜尋" />
+        </td>
+        <td>
+            <h4 style="color:red"> 總金額 @ViewBag.Cost</h4>
+        </td>
+    </tr>
+</table>}
+
+
+<table border="1" style="font-size:20px">
+    @*如果資料庫中不是零比紀錄，則顯示資料，並列出新增、刪除與修改連結*@
+    @*<td>@Html.DropDownListFor(model => model.DataList[0].Id, (SelectList)ViewBag.Test)</td>*@
+
+
+
+    <tr>
+        @*<td>@Html.DisplayNameFor(model => model.DataList[0].Id)</td>*@
+        <td>@Html.DisplayNameFor(model => model.DataList[0].Number)</td>
+        <td>@Html.DisplayNameFor(model => model.DataList[0].Gas)</td>
+        <td>@Html.DisplayNameFor(model => model.DataList[0].Content)</td>
+        <td>@Html.DisplayNameFor(model => model.DataList[0].Pay)</td>
+        <td>@Html.DisplayNameFor(model => model.DataList[0].Cost)</td>
+        <td>@Html.DisplayNameFor(model => model.DataList[0].Date)</td>
+        <td></td>
+    </tr>
+
+    @if (!Model.DataList.Count.Equals(0))
+    {
+        foreach (var item in Model.DataList)
+        {
+<tr>
+    @*<td> @item.Id </td>*@
+    <td> @item.Number </td>
+    <td> @item.Gas </td>
+    <td> @item.Content </td>
+    <td> @item.Pay </td>
+    <td> @item.Cost </td>
+    <td> @item.Date </td>
+    <td>@Html.ActionLink("編輯紀錄", "KaoEdit", new { @class = "form-control", Number = item.Number, Gas = item.Gas, Content = item.Content, Pay = item.Pay, Cost = item.Cost, Date = item.Date })</td>
+    
+    @*<td>@Html.ActionLink("刪除紀錄", "Delete", new { Id = item.Id })</td>*@
+
+</tr> }
+            } @*如果資料庫中為零筆紀錄，則印出"資料庫內查無資料"*@ else
+                        {
+            <tr>
+                <td colspan="6">
+                    資料庫內查無資料
+                </td>
+            </tr>}
+</table>
+<div>
+    @*Html.ActionLink("Back to List", "About","Home")*@
+    @*@Html.ActionLink("Back to List", "index")*@
+
+</div>
+
+@*匯入驗證所需的javascript*@
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

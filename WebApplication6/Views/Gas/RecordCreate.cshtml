@@ -1,0 +1,46 @@
+﻿@model WebApplication6.Models.YD
+
+@*<h2>RecordCreate</h2>*@
+
+
+@*@ViewBag.s*@
+<div class="row">
+    <div class="col-md-8">
+        <section id="RecordCreate">
+            @using (Html.BeginForm("RecordCreate", "Gas", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <table>
+                <h3>新增</h3>
+
+                <div class="form-group">
+
+                    @Html.Label("名稱")
+                    @Html.TextBoxFor(model => model.Gas, new { @Value = "高雄徐", htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Gas)
+                </div>
+
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.Content)
+                    @Html.TextBoxFor(model => model.Content)
+                    @Html.ValidationMessageFor(model => model.Content)
+                </div>
+
+
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.Cost)
+                    @Html.TextBoxFor(model => model.Cost)
+                    @Html.ValidationMessageFor(model => model.Cost)
+                </div>
+            </table>
+                <input type="submit" value="確定新增" />}
+        </section>
+    </div>
+</div>
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
